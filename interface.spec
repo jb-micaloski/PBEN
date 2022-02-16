@@ -10,7 +10,7 @@ block_cipher = None
 a = Analysis(['interface.py'],
              pathex=[],
              binaries=[],
-             datas=[('ControleGeral.kv','.'),('*.py','.'),('*.png','.'),('teste.ods','.')],
+             datas=[('ControleGeral.kv','.'),('*.py','.'),('*.png','.'),('teste.ods','.'),('logoEN.ico','.')],
              hiddenimports=[],
              hookspath=[],
              hooksconfig={},
@@ -36,7 +36,8 @@ exe = EXE(pyz,
           disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
-          entitlements_file=None )
+          entitlements_file=None,
+          icon= 'C:\\Users\\lucas\\Desktop\\PBEN\\logoEN.ico')
 
 coll = COLLECT(exe,
                a.binaries,
