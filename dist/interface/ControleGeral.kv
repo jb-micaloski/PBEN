@@ -1,0 +1,390 @@
+Base:
+
+<Base@BoxLayout>
+    canvas.before:
+        Color:
+            rgba: 0.77,0.77,0.77,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    orientation: "vertical"
+    Topo:
+        size_hint: 1, .1
+    Corpo:
+        size_hint: 1, .85
+    Rodape:
+        size_hint: 1, .05
+
+<Topo@BoxLayout>
+    Image:
+        source: 'LogoM.png'
+        size: self.texture_size
+        size_hint: .57, 2
+        pos_hint: {'center_x': 30, 'center_y': -0.2}
+        
+    Label:
+        text: 'PBEN'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+        font_size: "28sp"
+        size_hint: .8, 1
+
+    Image:
+        source: 'LogoEN.png'
+        size: self.texture_size
+        size_hint: .57, 2
+        pos_hint: {'center_x': -30, 'center_y': -0.2}
+        
+<Corpo@BoxLayout>
+    Label:
+        size_hint: .1, 1
+    Interface:
+        size_hint: .8, 1
+    Label:
+        size_hint: .1, 1
+
+<Interface@BoxLayout>
+    orientation: "vertical"
+    Consulta:
+        size_hint: 1, .15
+    DadosPrincipais:
+        size_hint: 1, .15
+    OutrosDados:
+        text: 'outros dados'
+        size_hint: 1, .45
+    Contatos:
+        size_hint: 1, .25
+
+<OutrosDados@BoxLayout>
+    NumerosAnteriores:
+    Organizacao:
+    Relacional:
+
+<Consulta@BoxLayout>
+    spacing: "20dp"
+
+    Label:
+        size_hint: 1,.2
+    Label:
+        text: 'Número Interno/Nome de Guerra:'
+        size_hint: 1, 1
+        text_size: self.size
+        halign: 'right'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    TextInput:
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        size_hint: 1, .4
+        multiline: False
+        on_text_validate: app.on_text_validate(self)
+    Button:
+        text: 'Consultar'
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        size_hint: 1, .4
+        on_press: app.on_button_click()
+        background_color: 0.7, 0.56, 0.4, 1
+        text_color: 0.77,0.77,0.77,1
+        bold: True
+    Label:
+        size_hint: 1,.3
+
+<NumerosAnteriores@BoxLayout>
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            size_hint: 1,.2
+            text: 'Números Anteriores:'
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+            color: 0.18, 0.28, 0.40, 1
+            bold: True
+        GridLayout:
+            cols: 2
+            Label:
+                text: '2021:'
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.numero_interno_2021
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: '2020:'
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.numero_interno_2020
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: '2019:'
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.numero_interno_2019
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: '2018:'
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.numero_interno_2018
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+
+<DadosPrincipais@BoxLayout>
+    Label:
+        text: 'Número Atual:'
+        size_hint: .6, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.numero_atual
+        size_hint: .2, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: 'Nome de Guerra:'
+        size_hint: .6, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.nome_guerra
+        size_hint: 1, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+
+<Contatos@BoxLayout>
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint: 1, .2
+            Label:
+                text: 'Nome Completo:'
+                size_hint: .4, 1
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.nome_completo
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+        GridLayout:
+            size_hint: 1, .8
+            cols: 2
+            Label:
+                text: 'Data de Nascimento:'
+                size_hint: .4, 1
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.nascimento
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: 'Telefone:'
+                size_hint: .4, 1
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.telefone
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: 'Celular:'
+                size_hint: .4, 1
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.celular
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: 'E-mail:'
+                size_hint: .4, 1
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+            Label:
+                text: app.email
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+                color: 0.18, 0.28, 0.40, 1
+                bold: True
+
+<Organizacao@GridLayout>
+    cols: 2
+    Label:
+        text: 'Companhia:'
+        size_hint: .4, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.companhia
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: 'Pelotão:'
+        size_hint: .4, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.pelotao
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: 'Camarote:'
+        size_hint: .4, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.camarote
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: 'Quarto:'
+        size_hint: .4, 1
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.quarto
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+
+<Relacional@GridLayout>
+    cols: 2
+    Label:
+        text: 'N.I.P:'
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        size_hint: .4, 1
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.nip
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: 'Tipo Sanguíneo:'
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        size_hint: .4, 1
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+    Label:
+        text: app.sangue
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+
+<Rodape@BoxLayout>
+    BoxLayout:
+        size_hint: .1, 1
+        Label:
+            size_hint: .1, 1
+        Label:
+            size_hint: .2, 1
+    Label:
+        size_hint: .7, 1
+    Label:
+        text: 'Pelo Aspirante Hartmann'
+        color: 0.18, 0.28, 0.40, 1
+        bold: True
+        size_hint: .2, 1
