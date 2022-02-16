@@ -14,6 +14,8 @@ def cria_aspirantes(pben):
 
         aspirante.numero_interno_atual = pben['Número Interno Atual'][i]
         #Alterar datas
+        #Try to import data system to avoid a quicly obsolescence of the program caused by a lack of knowledge
+        #Another solution is creating an input forms with the base year
         aspirante.numero_interno_2021 = pben['Número Interno 2021'][i]
         aspirante.numero_interno_2020 = pben['Número Interno 2020'][i]
         aspirante.numero_interno_2019 = pben['Número Interno 2019'][i]
