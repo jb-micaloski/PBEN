@@ -5,17 +5,21 @@ import re
 aspirante_nulo = Aspirante()
 
 aspirante_nulo.numero_atual = 'XXXX'
+aspirante_nulo.numero_interno_atual = 'XXXX'
 aspirante_nulo.nome_guerra = 'Nome não encontrado'
+aspirante_nulo.pelotao = 'NA'
+aspirante_nulo.companhia = 'NA'
+
 def cria_aspirantes(pben):
     aspirantes = []
-
+    '''
+    Adiciona no array aspirante todos os aspirantes como objetos, assim como suas propriedades
+    '''
     for i in range(len(pben)):
         aspirante = Aspirante()
 
         aspirante.numero_interno_atual = pben['Número Interno Atual'][i]
         #Alterar datas
-        #Try to import data system to avoid a quicly obsolescence of the program caused by a lack of knowledge
-        #Another solution is creating an input forms with the base year
         aspirante.numero_interno_2021 = pben['Número Interno 2021'][i]
         aspirante.numero_interno_2020 = pben['Número Interno 2020'][i]
         aspirante.numero_interno_2019 = pben['Número Interno 2019'][i]
@@ -55,11 +59,17 @@ def cria_aspirantes(pben):
     return aspirantes
 
 def busca_aspirante(aspirantes, valor_buscado):
+    '''Retorna o objeto do aspirante desejado'''
     padrao_numero = '([0-9]{4})'
     padrao_im = '(IM-[0-9]{3})'
     padrao_fn = '(FN-[0-9]{3})'
     valor_buscado = valor_buscado.upper()
 
+    '''
+    Verifica se o valor buscado bate com uma RE de número de aspirante
+    Se não bater, considera que é o nome de um aspirante
+    '''
+    
     if re.search(padrao_numero,valor_buscado) or re.search(padrao_im,valor_buscado) or re.search(padrao_fn,valor_buscado):
         for aspirante in aspirantes:
             if str(aspirante.numero_interno_atual) == str(valor_buscado):
@@ -70,3 +80,30 @@ def busca_aspirante(aspirantes, valor_buscado):
             if aspirante.nome_guerra.upper() == str(valor_buscado).upper():
                 return aspirante
         return aspirante_nulo
+
+def busca_licenca(numero_interno, dataframe):
+    dataframe['Número Interno'] = dataframe['Número Interno'].astype('str')
+    index = dataframe.index[dataframe['Número Interno'] == numero_interno].to_list()
+    info_licenca = []
+    try:
+        index = index[0]
+        info_licenca.append(dataframe.at[dataframe.index[index],'Situação'])
+        info_licenca.append(dataframe.at[dataframe.index[index],'Última Alteração'])
+    except:
+        info_licenca = ['Não encontrado','Não encontrado']
+    return info_licenca
+
+def busca_chave(numero_chave, dataframe):
+    numero_chave = str(numero_chave)
+    dataframe['Numero da Chave'] = dataframe['Numero da Chave'].astype('str')
+    index = dataframe.index[dataframe['Numero da Chave'] == numero_chave].to_list()
+    info_chave = []
+    try:
+        index = index[0]
+        info_chave.append(str(dataframe.at[dataframe.index[index],'Numero da Chave']))
+        info_chave.append(str(dataframe.at[dataframe.index[index],'Anterior']))
+        info_chave.append(str(dataframe.at[dataframe.index[index],'Atual']))
+        info_chave.append(str(dataframe.at[dataframe.index[index],'Última Alteração']))
+    except:
+        info_chave = ['Não encontrado','Não encontrado','Não encontrado','Não encontrado']
+    return info_chave
